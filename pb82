@@ -1,0 +1,34 @@
+# To include this file to bashrc
+# . /home/pb82/.pb82
+
+# custom alias
+alias l="ls -CF"
+alias ll="ls -lFht"
+alias la="ls -lAFht"
+
+alias mv="mv -i"
+alias rm="rm -i"
+alias g="git"
+
+# Navigate up directories
+alias ..="cd .."
+alias ..2="cd ../.."
+alias ..3="cd ../../.."
+alias ..4="cd ../../../.."
+alias ..5="cd ../../../../.."
+
+# Creating & navigating to the dir at same time
+function mkdircd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
+
+# Autocorrect mistyped directory name
+shopt -s cdspell
+
+# CDPATH for faster navigation without going to actual parent paths
+CODE="/floop/vault"
+CEMETERY="/floop/vault/cemetery3"
+export CDPATH=.:~:$CODE:$CEMETERY
+
+# Displays ANSCII art & system info(make sure this stays at the end of file)
+if command -V "neofetch" &> /dev/null; then
+   neofetch
+fi
