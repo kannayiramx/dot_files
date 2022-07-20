@@ -24,9 +24,10 @@ function mkdircd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 shopt -s cdspell
 
 # CDPATH for faster navigation without going to actual parent paths
-CODE="/floop/vault"
-CEMETERY="/floop/vault/cemetery3"
-export CDPATH=.:~:$CODE:$CEMETERY
+CODE="/home/aloy/Vault/drill"
+CEMETERY="/home/aloy/Vault/archive30"
+BASE="/home/aloy/Vault"
+export CDPATH=.:~:$CODE:$CEMETERY:$BASE
 
 # Displays ANSCII art & system info(make sure this stays at the end of file)
 if command -V "neofetch" &> /dev/null; then

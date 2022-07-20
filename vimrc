@@ -1,3 +1,9 @@
+" Picking & setting a runtimepath for vim (this will set ~/.vim dir as rtp)
+let $RTP=split(&runtimepath, ',')[0]
+
+" Setting vimrc file path
+let $RC="$HOME/.vim/vimrc"
+
 set t_Co=256              " Enable 256 color support
 set nocompatible          " Disable old vi compatibility
 set cursorline            " Highlight current line
@@ -15,6 +21,20 @@ set background=dark       " Setting colorscheme mode
 set colorcolumn=80                 " Marking max column width
 highlight ColorColumn ctermbg=200  " color for max coloumn width line
 
+" filetype - will try to recognize type of file and set 'filetype' option
+" plugin   - to load plugins for specific file type
+" indent   - to load indentation rules for specific file type
+" syntax   - to enable syntax highlighting(colouring) specific to file type
+filetype plugin indent on
+syntax on
+
+" To fix not-working backspace key in insert mode
+set backspace=indent,eol,start
+
+" To fix the error thrown while opening a new file when changes in the current
+" file has not yet saved
+set hidden
+
 " Remapping scrolling one line at a time
 " Rather than pressing CTRL-E to scroll use CTRL-J
 nnoremap <C-J> <C-E>
@@ -22,10 +42,10 @@ nnoremap <C-K> <C-Y>
 
 " Remapping movement keys b/w splits in vim
 " Rather than presing CTRL-W L now press CTRL-L
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-K> <C-W><C-K>
-" nnoremap <C-L> <C-W><C-L>
-" nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+nnoremap <C-H> <C-W>h
 
 " Specific indentation ruls for *.c files
 autocmd Filetype c setlocal expandtab
@@ -39,11 +59,6 @@ autocmd Filetype html setlocal expandtab
 autocmd Filetype html setlocal shiftwidth=2
 autocmd Filetype html setlocal tabstop=2 
 autocmd Filetype html setlocal softtabstop=2
-
-" filetype - will try to recognize type of file and set 'filetype' option
-" plugin   - to load plugins for specific file types
-" indent   - to load indents for specific file types
-filetype plugin indent on
 
 " Paste mode is used to turn of the autoindent feature to prevent unnecessary
 " indentation of code while pasting code into vi
@@ -67,3 +82,22 @@ call plug#begin()
 Plug 'preservim/nerdtree'               " NerdTree install
 
 call plug#end()
+
+
+""""" NERD-TREE CONFIGURATIONS """""
+" Open/Close Nerd tree CTRL-n
+nmap <C-n> :NERDTreeToggle<CR>
+
+" Start NERDTree whenever vim openes and leave the cursor in it.
+" autocmd VimEnter * NERDTree
+
+" Start NERDTree and put the cursor back in the other window.
+" autocmd VimEnter * NERDTree | wincmd p
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+

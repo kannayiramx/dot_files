@@ -2,7 +2,7 @@
 	defaultBranch = main
 [core]
         editor = vi
-	excludesfile = /home/pb82/.gitignore
+	excludesfile = /home/aloy/.gitignore
 [color]
         diff = auto
 	status = auto
@@ -15,7 +15,7 @@
 	s = status
 
         # Pushing code changes to remote repo
-	ph = push -u gh main
+	pgh = push -u gh main
 
 	# Viewing the connected remote repository
 	rr = remote -v
