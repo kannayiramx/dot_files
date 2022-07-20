@@ -19,6 +19,13 @@ set smartcase             " use case if any caps used
 colorscheme badwolf       " Setting colorscheme
 set background=dark       " Setting colorscheme mode
 
+" To fix not-working backspace key in insert mode
+set backspace=indent,eol,start
+
+" To fix the error thrown while opening a new file when changes in the current
+" file has not yet saved
+set hidden
+
 " filetype - will try to recognize type of file and set 'filetype' option
 " plugin   - to load plugins for specific file type
 " indent   - to load indentation rules for specific file type
@@ -26,12 +33,20 @@ set background=dark       " Setting colorscheme mode
 filetype plugin indent on
 syntax on
 
-" To fix not-working backspace key in insert mode
-set backspace=indent,eol,start
+" NOTE: File type specific formating rules are specified in
+" ~/.vim/after/ftplugin/*.vim location. These will added over the
+" pre-defined rules
 
-" To fix the error thrown while opening a new file when changes in the current
-" file has not yet saved
-set hidden
+" expandtab  - enter spaces when TAB is pressed
+" tabstop    - column size to represent TAB
+" shiftwidth - no of spaces to use for indentation
+" autoindent - copy indent from curent line when starting new line
+" smartindent- works for c files, smarter version of autointent
+"            - dont use it when using file type based indentation
+" softtabstop- when hitting backspace define how many spaces to delete
+"
+" To turn off any options enabled by set keyword, just prefix the parameter 
+" with "no" EX: set nonumber, set noignorecase
 
 " Remapping scrolling one line at a time
 " Rather than pressing CTRL-E to scroll use CTRL-J
@@ -45,27 +60,9 @@ nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 nnoremap <C-H> <C-W>h
 
-" Specific indentation ruls for html files
-autocmd Filetype html setlocal expandtab
-autocmd Filetype html setlocal shiftwidth=2
-autocmd Filetype html setlocal tabstop=2 
-autocmd Filetype html setlocal softtabstop=2
-
 " Paste mode is used to turn of the autoindent feature to prevent unnecessary
 " indentation of code while pasting code into vi
 set pastetoggle=<F2>
-
-" expandtab  - enter spaces when TAB is pressed
-" tabstop    - column size to represent TAB
-" shiftwidth - no of spaces to use for indentation
-" autoindent - copy indent from curent line when starting new line
-" smartindent- works for c files, smarter version of autointent
-"            - dont use it when using file type based indentation
-" softtabstop- when hitting backspace define how many spaces to delete
-"
-" To turn off any options enabled by set keyword, just prefix the parameter 
-" with "no" EX: set nonumber, set noignorecase
-
 
 " PlugInstall or PlugUpdate - to update/install plugin
 " PlugUpgrade               - to update vim-plug
