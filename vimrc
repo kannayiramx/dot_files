@@ -1,4 +1,5 @@
 " Picking & setting a runtimepath for vim (this will set ~/.vim dir as rtp)
+" runtimepath is the list of files/folders vim will look for config settings
 let $RTP=split(&runtimepath, ',')[0]
 
 " Setting vimrc file path
@@ -17,9 +18,6 @@ set smartcase             " use case if any caps used
 
 colorscheme badwolf       " Setting colorscheme
 set background=dark       " Setting colorscheme mode
-
-set colorcolumn=80                 " Marking max column width
-highlight ColorColumn ctermbg=200  " color for max coloumn width line
 
 " filetype - will try to recognize type of file and set 'filetype' option
 " plugin   - to load plugins for specific file type
@@ -46,13 +44,6 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 nnoremap <C-H> <C-W>h
-
-" Specific indentation ruls for *.c files
-autocmd Filetype c setlocal expandtab
-autocmd Filetype c setlocal shiftwidth=3
-autocmd Filetype c setlocal tabstop=3
-autocmd Filetype c setlocal softtabstop=3
-set autoindent
 
 " Specific indentation ruls for html files
 autocmd Filetype html setlocal expandtab
